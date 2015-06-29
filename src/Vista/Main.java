@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import Controlador.EnviarBroadcast;
+import Controlador.EnviarMulticast;
 
 /**
  *
@@ -17,9 +17,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        EnviarBroadcast mensajeBroadcast = new EnviarBroadcast();
-        mensajeBroadcast.start();
         
         Ventana ventana = new Ventana();
         ventana.setVisible(true);
