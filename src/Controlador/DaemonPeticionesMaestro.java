@@ -31,14 +31,15 @@ public class DaemonPeticionesMaestro extends Thread {
                 
                 System.out.println("Esperando petciones del Maestro por el puerto: " + Utils.puerto);
                 so = ss.accept();
-                System.out.println( "Peticion recibida de: " +  so.getInetAddress().getHostAddress());
+                System.out.println( "Peticion recibida... Atendiendo peticion\n");
                 
                 // Atender solicitud 
-                
+                PeticionesMaestro atender = new PeticionesMaestro(so);
+                atender.start();
                 
             }
         }catch(Exception e ){
-            this.start();
+            System.out.println("Exploto el hilo...");
         }
         
     }

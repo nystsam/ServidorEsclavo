@@ -14,18 +14,16 @@ import Utils.Utils;
 public class PeticionInscripcion extends Peticion implements Serializable {
     
     private String nombreRed;
-    private String ipMaestro;
     private int puertoMaestro;
 
-    public PeticionInscripcion(String nombreRed, String ipMaestro, int puertoMaestro) {
-        super();
+    public PeticionInscripcion(String nombrePeticion, String nombreRed,int puertoMaestro) {
+        super(nombrePeticion);
         this.nombreRed = nombreRed;
-        this.ipMaestro = ipMaestro;
         this.puertoMaestro = puertoMaestro;
     }
     
-    public PeticionInscripcion(){
-        super();
+    public PeticionInscripcion(String nombrePeticion){
+        super(nombrePeticion);
     }
     
     @Override
@@ -33,12 +31,31 @@ public class PeticionInscripcion extends Peticion implements Serializable {
         
         Red red = new Red(this.nombreRed, null);
         
-        red.setIp(this.ipMaestro);
+        red.setIp(Utils.ipMaestroLlegada);
         red.setPuerto(this.puertoMaestro);
         
         Utils.listaRedes.getLista().add(red);
+        Utils.listaServidores.addItem(this.nombreRed);
         
-        return false;
+        return true;
     }
+
+    public String getNombreRed() {
+        return nombreRed;
+    }
+
+    public int getPuertoMaestro() {
+        return puertoMaestro;
+    }
+
+    public void setNombreRed(String nombreRed) {
+        this.nombreRed = nombreRed;
+    }
+
+    public void setPuertoMaestro(int puertoMaestro) {
+        this.puertoMaestro = puertoMaestro;
+    }
+    
+    
     
 }

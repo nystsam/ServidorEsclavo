@@ -22,4 +22,14 @@ public abstract class Peticion implements Serializable{
     
         return false;
     }
+
+    public String getNombrePeticion() {
+        return nombrePeticion;
+    }
+
+    public void setNombrePeticion(String nombrePeticion) {
+        this.nombrePeticion = nombrePeticion;
+    }
+    
+    
 }

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Peticion;
+import Utils.Utils;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -28,27 +29,23 @@ public class PeticionesMaestro extends Thread {
         
     }
     
-    private Object convertFromBytes(byte[] bytes) throws IOException, ClassNotFoundException {
-
-        try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-            ObjectInput in = new ObjectInputStream(bis)) {
-            return in.readObject();
-        }
-    }
-    
-    
     @Override
     public void run(){
           
         try {
-            DataInputStream input = new DataInputStream(this.so.getInputStream());
+            ObjectInputStream input = new ObjectInputStream(this.so.getInputStream());
             
-            Peticion peticion = this.convertFromBytes(input.readByte());
-            //System.out.println(comando);
+            Peticion peticion = (Peticion) input.readObject();
             
-            
+            // Asigna el ip del servidor maestro de llegada
+            Utils.ipMaestroLlegada = this.so.getInetAddress().getHostAddress();
+            peticion.ejecutarPeticion();
+
+            so.close();
             
         } catch (IOException ex) {
+            Logger.getLogger(PeticionesMaestro.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(PeticionesMaestro.class.getName()).log(Level.SEVERE, null, ex);
         }
 
