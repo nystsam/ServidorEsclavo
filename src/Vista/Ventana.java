@@ -8,6 +8,7 @@ package Vista;
 import Controlador.ConexionRed;
 import Controlador.EnviarMulticast;
 import Utils.Utils;
+import javax.swing.JButton;
 
 /**
  *
@@ -15,13 +16,18 @@ import Utils.Utils;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana
-     */
+    public JButton botonDescubrir;
+    public JButton botonConectar;
+    
+    
     public Ventana() {
         initComponents();
         
         Utils.listaServidores = this.jComboBoxServidores;
+        this.botonDescubrir = this.jButtonDescubrirRedes;
+        this.botonConectar = this.jButtonConectar;
+        Utils.ventana = this;
+        Utils.objetoVentana = this;
         
     }
 
@@ -135,9 +141,7 @@ public class Ventana extends javax.swing.JFrame {
     private void jButtonDescubrirRedesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDescubrirRedesActionPerformed
         EnviarMulticast mensajeBroadcast = new EnviarMulticast();
         mensajeBroadcast.start();
-        
-        this.jButtonDescubrirRedes.setEnabled(false);
-        this.jButtonConectar.setEnabled(true);
+
     }//GEN-LAST:event_jButtonDescubrirRedesActionPerformed
 
     private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed

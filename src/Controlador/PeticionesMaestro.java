@@ -6,10 +6,7 @@ package Controlador;
 
 import Modelo.Peticion;
 import Utils.Utils;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -48,6 +45,10 @@ public class PeticionesMaestro extends Thread {
                 output.writeObject(Utils.listaArchivos);
                 output.flush();
                 
+            }
+            else{
+                Utils.objetoVentana.botonDescubrir.setEnabled(false);
+                Utils.objetoVentana.botonConectar.setEnabled(true);
             }
 
             so.close();

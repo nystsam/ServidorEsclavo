@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Equipo;
+import Modelo.ListaRedes;
 import javax.swing.JOptionPane;
 import Modelo.Red;
 import Utils.Utils;
@@ -67,9 +68,17 @@ public class ConexionRed extends Thread {
             }
             
                 
-        } catch (IOException ex) {
-            Logger.getLogger(ConexionRed.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(Utils.ventana, "Error al conectarse con el Servidor Maestro", 
+            "Error",JOptionPane.ERROR_MESSAGE);
+            
+            Utils.objetoVentana.botonDescubrir.setEnabled(true);
+            Utils.listaRedes = new ListaRedes();
+            Utils.objetoVentana.botonConectar.setEnabled(false);
+            Utils.listaServidores.removeAllItems();
+            
         }
+        
 
         
     }

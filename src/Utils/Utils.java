@@ -8,6 +8,7 @@ package Utils;
 import Modelo.ListaArchivos;
 import Modelo.ListaRedes;
 import Modelo.Red;
+import Vista.Ventana;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
@@ -25,6 +26,7 @@ public class Utils {
     
     public static ListaArchivos listaArchivos = new ListaArchivos();
     public static JFrame ventana;
+    public static Ventana objetoVentana;
     
     public static String ipMaestroLlegada;
     public static JComboBox listaServidores;
