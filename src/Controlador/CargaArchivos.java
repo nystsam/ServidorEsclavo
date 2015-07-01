@@ -37,7 +37,7 @@ public class CargaArchivos {
             Archivo nuevoArchivo;
             String extension = "", contenido;
             StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
+
                     
             int i = archivoLeido.getName().lastIndexOf('.');
             if (i != -1) {
@@ -45,16 +45,18 @@ public class CargaArchivos {
             }
             
             br = new BufferedReader(new FileReader(archivoLeido));
+            String line = br.readLine();
 
             while (line != null) {
                 sb.append(line);
                 sb.append(System.lineSeparator());
+                
                 line = br.readLine();
             }
             
             contenido = sb.toString();
-            
-            nuevoArchivo = new Archivo(archivoLeido.getName().split(".")[0],extension,contenido);
+
+            nuevoArchivo = new Archivo(archivoLeido.getName().split("\\.")[0],extension,contenido);
             Utils.listaArchivos.getLista().add(nuevoArchivo);
             
         }
