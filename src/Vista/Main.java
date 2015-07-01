@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CargaArchivos;
 import Controlador.DaemonPeticionesMaestro;
 import Controlador.EnviarMulticast;
 
@@ -18,6 +19,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        CargaArchivos cargado = new CargaArchivos();
+        cargado.registrarArchivos();
         
         DaemonPeticionesMaestro peticionesMaestro = new DaemonPeticionesMaestro();
         peticionesMaestro.start();

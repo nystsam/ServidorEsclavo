@@ -31,6 +31,7 @@ public class Utils {
     
     public static boolean AplicacionIniciada = false;
     public static ListaRedes redes = new ListaRedes();
+    public static boolean enUso = false;
 
     
 }
