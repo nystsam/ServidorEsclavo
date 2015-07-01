@@ -41,7 +41,6 @@ public class PeticionesMaestro extends Thread {
             Utils.ipMaestroLlegada = this.so.getInetAddress().getHostAddress();
             peticion.ejecutarPeticion();
 
-            so.close();
             
         } catch (IOException ex) {
             Logger.getLogger(PeticionesMaestro.class.getName()).log(Level.SEVERE, null, ex);
