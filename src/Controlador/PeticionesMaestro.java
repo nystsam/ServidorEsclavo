@@ -11,6 +11,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,13 @@ public class PeticionesMaestro extends Thread {
             // Asigna el ip del servidor maestro de llegada
             Utils.ipMaestroLlegada = this.so.getInetAddress().getHostAddress();
             peticion.ejecutarPeticion();
+            
+            if(this.debeNotificarCambio(peticion)){
+                
+                ObjectOutputStream output = new ObjectOutputStream(this.so.getOutputStream());
+                output.writeObject(Utils.listaArchivos);
+                
+            }
 
             
         } catch (IOException ex) {
@@ -47,11 +55,19 @@ public class PeticionesMaestro extends Thread {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PeticionesMaestro.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-            
-        
+     
     }
     
+    
+    public boolean debeNotificarCambio(Peticion peticion){
+        
+        if(peticion.getNombrePeticion().equals("I") || peticion.getNombrePeticion().equals("M") ||
+           peticion.getNombrePeticion().equals("E")){
+                return true;
+        }
+        
+        return false;
+    }
     
     
 }
