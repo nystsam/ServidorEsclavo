@@ -42,13 +42,15 @@ public class PeticionesMaestro extends Thread {
             Utils.ipMaestroLlegada = this.so.getInetAddress().getHostAddress();
             peticion.ejecutarPeticion();
             
+            
             if(this.debeNotificarCambio(peticion)){
-                
-                ObjectOutputStream output = new ObjectOutputStream(this.so.getOutputStream());
+                ObjectOutputStream output = new ObjectOutputStream(this.so.getOutputStream());    
                 output.writeObject(Utils.listaArchivos);
+                output.flush();
                 
             }
 
+            so.close();
             
         } catch (IOException ex) {
             Logger.getLogger(PeticionesMaestro.class.getName()).log(Level.SEVERE, null, ex);

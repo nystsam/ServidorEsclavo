@@ -44,6 +44,8 @@ public class PeticionEliminacion extends Peticion implements Serializable {
                 File archivoLocal = new File(directorio+this.nombreGeneralArchivo);
 
                 if (archivoLocal.exists()) {
+                    archivoLocal.setWritable(true);
+                    System.gc();
                     archivoLocal.delete();
 
                     for(int i = 0; i < Utils.listaArchivos.getLista().size(); i++){
@@ -53,7 +55,9 @@ public class PeticionEliminacion extends Peticion implements Serializable {
                             Utils.listaArchivos.getLista().remove(i);
                             break;
                         }               
-                    }                 
+                    }
+                    
+                    
                     System.out.println("Se elimino el archivo: " + this.nombreGeneralArchivo + "\n");
                     
                     Utils.enUso = false;
